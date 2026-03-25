@@ -60,6 +60,13 @@ function QuizContent() {
         typedMails
       );
 
+      // Save answers to sessionStorage for the results page
+      try {
+        sessionStorage.setItem('quizAnswers', JSON.stringify(updatedAnswers));
+      } catch {
+        // sessionStorage not available
+      }
+
       try {
         await supabase.from('scores').insert({
           player_name: playerName,
