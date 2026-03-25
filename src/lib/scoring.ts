@@ -6,7 +6,7 @@ export function calculateScore(
 ): number {
   if (!isCorrect) return 0;
   const timeBonus = Math.max(0, 50 - timeInSeconds * 5);
-  return 100 + timeBonus;
+  return Math.round(100 + timeBonus);
 }
 
 export function calculateTotalScore(
