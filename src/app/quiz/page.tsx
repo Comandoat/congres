@@ -12,12 +12,9 @@ import ProgressBar from '@/components/progress-bar';
 
 const typedMails: Mail[] = mails as Mail[];
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-// Direct fetch to Supabase REST API — bypasses the JS client entirely
-// to avoid any interference from React lifecycle / client state
-async function saveScoreToSupabase(data: {
+// Save score via our own API route (server-side insert to Supabase)
+// This avoids any browser-side issues (CORS, ad-blockers, client SDK bugs)
+async function saveScore(data: {
   player_name: string;
   score: number;
   correct_answers: number;
@@ -25,22 +22,18 @@ async function saveScoreToSupabase(data: {
 }): Promise<boolean> {
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/scores`, {
+      const res = await fetch('/api/scores', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'apikey': SUPABASE_ANON_KEY,
-          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-          'Prefer': 'return=minimal',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
+        keepalive: true, // ensures request survives page navigation
       });
       if (res.ok) return true;
-      console.error(`Supabase insert attempt ${attempt + 1}: ${res.status} ${await res.text()}`);
+      console.error(`Save attempt ${attempt + 1}: ${res.status}`);
     } catch (e) {
       console.error(`Network error attempt ${attempt + 1}:`, e);
     }
-    if (attempt < 2) await new Promise((r) => setTimeout(r, 800));
+    if (attempt < 2) await new Promise((r) => setTimeout(r, 500));
   }
   return false;
 }
@@ -102,9 +95,8 @@ function QuizContent() {
       // Build the results URL now (before any async work)
       const resultsUrl = `/results?player=${encodeURIComponent(playerName)}&score=${score}&correct=${correctAnswers}&total=${typedMails.length}`;
 
-      // Save score via direct REST API call (not Supabase JS client)
-      // This is more reliable because it's a plain fetch, not affected by React state
-      const saved = await saveScoreToSupabase({
+      // Save score via our API route (server-side)
+      const saved = await saveScore({
         player_name: playerName,
         score,
         correct_answers: correctAnswers,
