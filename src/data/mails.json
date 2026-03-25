@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "image": "/mails/mail-1.png",
+    "isPhishing": true,
+    "hint": "Regardez attentivement le nom de domaine de l'expéditeur.",
+    "explanation": "L'adresse de l'expéditeur utilise 'h0pital' avec un zéro au lieu de la lettre 'o'. C'est une technique classique de phishing pour imiter un domaine légitime."
+  },
+  {
+    "id": 2,
+    "image": "/mails/mail-2.png",
+    "isPhishing": true,
+    "hint": "Vérifiez le lien de téléchargement de la pièce jointe.",
+    "explanation": "Le lien pour télécharger les résultats d'analyses mène vers un site externe suspect. Un vrai laboratoire vous donnerait accès via son portail sécurisé, pas via un lien de téléchargement direct."
+  },
+  {
+    "id": 3,
+    "image": "/mails/mail-3.png",
+    "isPhishing": false,
+    "hint": "Examinez le domaine et le contenu du message.",
+    "explanation": "Cet email provient bien du domaine officiel du CHU. Il contient une confirmation de rendez-vous avec des informations cohérentes et ne demande aucune action urgente ni donnée personnelle."
+  },
+  {
+    "id": 4,
+    "image": "/mails/mail-4.png",
+    "isPhishing": true,
+    "hint": "Pourquoi un système de santé vous demanderait-il de réinitialiser votre mot de passe en urgence ?",
+    "explanation": "Ce message crée un sentiment d'urgence artificiel pour vous pousser à cliquer rapidement. Les vrais systèmes de santé ne menacent jamais de supprimer votre compte sous 24h."
+  }
+]

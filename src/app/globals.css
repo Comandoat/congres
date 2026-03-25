@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+:root {
+  --color-background: #0a0a0f;
+  --color-surface: #12121a;
+  --color-primary: #00d4ff;
+  --color-secondary: #00ff88;
+  --color-text: #e0e0e8;
+  --color-muted: #8888a0;
+  --color-danger: #ff4444;
+  --color-success: #00ff88;
+  --color-border: #1e1e2e;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) var(--color-background);
+}
+
+/* Glow utility classes */
+.glow-primary {
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.3), 0 0 30px rgba(0, 212, 255, 0.1);
+}
+
+.glow-secondary {
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.3), 0 0 30px rgba(0, 255, 136, 0.1);
+}
+
+.glow-danger {
+  box-shadow: 0 0 15px rgba(255, 68, 68, 0.3), 0 0 30px rgba(255, 68, 68, 0.1);
+}
+
+.text-glow-primary {
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.text-glow-secondary {
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
