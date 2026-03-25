@@ -20,10 +20,9 @@ function QuizContent() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [timerRunning, setTimerRunning] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [saveStatus, setSaveStatus] = useState<string | null>(null);
   const [direction, setDirection] = useState(1);
   const currentTimeRef = useRef(0);
-
-  // Store answers in a ref so they survive re-renders without triggering them
   const answersRef = useRef<PlayerAnswer[]>([]);
   const submittingRef = useRef(false);
 
@@ -39,8 +38,7 @@ function QuizContent() {
     currentTimeRef.current = time;
   }, []);
 
-  const handleAnswer = (answer: 'phishing' | 'legitimate') => {
-    // Guard against double-submit using ref (not state, to avoid race conditions)
+  const handleAnswer = async (answer: 'phishing' | 'legitimate') => {
     if (submittingRef.current) return;
 
     setTimerRunning(false);
@@ -54,9 +52,9 @@ function QuizContent() {
     answersRef.current = [...answersRef.current, newAnswer];
 
     if (isLastMail) {
-      // Lock immediately via ref
       submittingRef.current = true;
       setIsSubmitting(true);
+      setSaveStatus('Calcul du score...');
 
       const allAnswers = answersRef.current;
       const { score, correctAnswers } = calculateTotalScore(allAnswers, typedMails);
@@ -68,35 +66,62 @@ function QuizContent() {
         // ignore
       }
 
-      // Build URL before any async
       const resultsUrl = `/results?player=${encodeURIComponent(playerName)}&score=${score}&correct=${correctAnswers}&total=${typedMails.length}`;
 
-      // Fire and navigate — use sendBeacon as primary (fire-and-forget, survives navigation)
-      // plus a fetch as backup
-      const payload = JSON.stringify({
-        player_name: playerName,
-        score,
-        correct_answers: correctAnswers,
-        total_questions: typedMails.length,
-      });
+      setSaveStatus(`Enregistrement du score (${score} pts)...`);
 
-      // sendBeacon is guaranteed to complete even if the page navigates away
-      const beaconSent = navigator.sendBeacon(
-        '/api/scores',
-        new Blob([payload], { type: 'application/json' })
-      );
+      // Use await fetch — we show a loading screen so no race condition
+      let saved = false;
+      for (let attempt = 1; attempt <= 3; attempt++) {
+        try {
+          setSaveStatus(`Enregistrement... (tentative ${attempt}/3)`);
+          const res = await fetch('/api/scores', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              player_name: playerName,
+              score,
+              correct_answers: correctAnswers,
+              total_questions: typedMails.length,
+            }),
+          });
 
-      if (!beaconSent) {
-        // Fallback: use fetch with keepalive
-        fetch('/api/scores', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: payload,
-          keepalive: true,
-        }).catch(() => {});
+          if (res.ok) {
+            saved = true;
+            setSaveStatus('Score enregistré !');
+            break;
+          } else {
+            const errText = await res.text();
+            setSaveStatus(`Erreur ${res.status}: ${errText}`);
+          }
+        } catch (e) {
+          setSaveStatus(`Erreur réseau (tentative ${attempt}): ${e}`);
+        }
+
+        if (attempt < 3) {
+          await new Promise((r) => setTimeout(r, 1000));
+        }
       }
 
-      // Navigate immediately — sendBeacon handles the save in background
+      if (!saved) {
+        // Last resort: try sendBeacon
+        setSaveStatus('Tentative sendBeacon...');
+        navigator.sendBeacon(
+          '/api/scores',
+          new Blob(
+            [JSON.stringify({
+              player_name: playerName,
+              score,
+              correct_answers: correctAnswers,
+              total_questions: typedMails.length,
+            })],
+            { type: 'application/json' }
+          )
+        );
+      }
+
+      // Small delay so user can see the status
+      await new Promise((r) => setTimeout(r, 500));
       window.location.href = resultsUrl;
     } else {
       setDirection(1);
@@ -106,6 +131,17 @@ function QuizContent() {
       }, 50);
     }
   };
+
+  // Saving screen
+  if (isSubmitting) {
+    return (
+      <div className="min-h-dvh flex flex-col items-center justify-center px-4 gap-4">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-[var(--color-primary)] border-t-transparent" />
+        <p className="text-[var(--color-text)] text-center font-medium">{saveStatus}</p>
+        <p className="text-[var(--color-muted)] text-xs text-center">Ne fermez pas cette page</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-dvh flex flex-col px-4 py-6 max-w-lg mx-auto">
