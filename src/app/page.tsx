@@ -9,10 +9,16 @@ export default function HomePage() {
   const [playerName, setPlayerName] = useState("");
   const router = useRouter();
 
+  const ADMIN_CODE = "adminGUARDIA2026";
+
   const handleStart = () => {
-    if (playerName.trim()) {
-      router.push(`/quiz?player=${encodeURIComponent(playerName.trim())}`);
+    const name = playerName.trim();
+    if (!name) return;
+    if (name === ADMIN_CODE) {
+      router.push("/admin");
+      return;
     }
+    router.push(`/quiz?player=${encodeURIComponent(name)}`);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
