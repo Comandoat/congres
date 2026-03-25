@@ -12,45 +12,21 @@ import ProgressBar from '@/components/progress-bar';
 
 const typedMails: Mail[] = mails as Mail[];
 
-// Save score via our own API route (server-side insert to Supabase)
-// This avoids any browser-side issues (CORS, ad-blockers, client SDK bugs)
-async function saveScore(data: {
-  player_name: string;
-  score: number;
-  correct_answers: number;
-  total_questions: number;
-}): Promise<boolean> {
-  for (let attempt = 0; attempt < 3; attempt++) {
-    try {
-      const res = await fetch('/api/scores', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-        keepalive: true, // ensures request survives page navigation
-      });
-      if (res.ok) return true;
-      console.error(`Save attempt ${attempt + 1}: ${res.status}`);
-    } catch (e) {
-      console.error(`Network error attempt ${attempt + 1}:`, e);
-    }
-    if (attempt < 2) await new Promise((r) => setTimeout(r, 500));
-  }
-  return false;
-}
-
 function QuizContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const playerName = searchParams.get('player') || '';
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [answers, setAnswers] = useState<PlayerAnswer[]>([]);
   const [timerRunning, setTimerRunning] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [direction, setDirection] = useState(1); // 1 = forward
+  const [direction, setDirection] = useState(1);
   const currentTimeRef = useRef(0);
 
-  // Redirect if no player name
+  // Store answers in a ref so they survive re-renders without triggering them
+  const answersRef = useRef<PlayerAnswer[]>([]);
+  const submittingRef = useRef(false);
+
   if (!playerName) {
     router.replace('/');
     return null;
@@ -63,8 +39,9 @@ function QuizContent() {
     currentTimeRef.current = time;
   }, []);
 
-  const handleAnswer = async (answer: 'phishing' | 'legitimate') => {
-    if (isSubmitting) return;
+  const handleAnswer = (answer: 'phishing' | 'legitimate') => {
+    // Guard against double-submit using ref (not state, to avoid race conditions)
+    if (submittingRef.current) return;
 
     setTimerRunning(false);
 
@@ -74,47 +51,56 @@ function QuizContent() {
       timeInSeconds: Math.round(currentTimeRef.current * 10) / 10,
     };
 
-    const updatedAnswers = [...answers, newAnswer];
-    setAnswers(updatedAnswers);
+    answersRef.current = [...answersRef.current, newAnswer];
 
     if (isLastMail) {
-      // Calculate score and save
+      // Lock immediately via ref
+      submittingRef.current = true;
       setIsSubmitting(true);
-      const { score, correctAnswers } = calculateTotalScore(
-        updatedAnswers,
-        typedMails
-      );
 
-      // Save answers to sessionStorage for the results page
+      const allAnswers = answersRef.current;
+      const { score, correctAnswers } = calculateTotalScore(allAnswers, typedMails);
+
+      // Save answers to sessionStorage
       try {
-        sessionStorage.setItem('quizAnswers', JSON.stringify(updatedAnswers));
+        sessionStorage.setItem('quizAnswers', JSON.stringify(allAnswers));
       } catch {
-        // sessionStorage not available
+        // ignore
       }
 
-      // Build the results URL now (before any async work)
+      // Build URL before any async
       const resultsUrl = `/results?player=${encodeURIComponent(playerName)}&score=${score}&correct=${correctAnswers}&total=${typedMails.length}`;
 
-      // Save score via our API route (server-side)
-      const saved = await saveScore({
+      // Fire and navigate — use sendBeacon as primary (fire-and-forget, survives navigation)
+      // plus a fetch as backup
+      const payload = JSON.stringify({
         player_name: playerName,
         score,
         correct_answers: correctAnswers,
         total_questions: typedMails.length,
       });
 
-      if (!saved) {
-        console.error('Failed to save score after 3 attempts');
+      // sendBeacon is guaranteed to complete even if the page navigates away
+      const beaconSent = navigator.sendBeacon(
+        '/api/scores',
+        new Blob([payload], { type: 'application/json' })
+      );
+
+      if (!beaconSent) {
+        // Fallback: use fetch with keepalive
+        fetch('/api/scores', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload,
+          keepalive: true,
+        }).catch(() => {});
       }
 
-      // Navigate only after save is complete
+      // Navigate immediately — sendBeacon handles the save in background
       window.location.href = resultsUrl;
     } else {
-      // Move to next mail
       setDirection(1);
       setCurrentIndex((prev) => prev + 1);
-
-      // Restart timer after a brief moment for the animation
       setTimeout(() => {
         setTimerRunning(true);
       }, 50);
@@ -123,7 +109,6 @@ function QuizContent() {
 
   return (
     <div className="min-h-dvh flex flex-col px-4 py-6 max-w-lg mx-auto">
-      {/* Header: progress + timer */}
       <div className="flex items-center justify-between gap-4 mb-4">
         <div className="flex-1">
           <ProgressBar current={currentIndex + 1} total={typedMails.length} />
@@ -131,7 +116,6 @@ function QuizContent() {
         <Timer isRunning={timerRunning} onTimeUpdate={handleTimeUpdate} />
       </div>
 
-      {/* Mail viewer with transition */}
       <div className="flex-1 relative overflow-hidden">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
@@ -147,7 +131,6 @@ function QuizContent() {
         </AnimatePresence>
       </div>
 
-      {/* Answer buttons */}
       <div className="grid grid-cols-2 gap-3 mt-4 pb-4">
         <button
           onClick={() => handleAnswer('phishing')}
