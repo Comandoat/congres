@@ -5,32 +5,36 @@
 ## Phase 0 — Initialisation ✅
 - [x] Création CLAUDE.md
 - [x] Création système de mémoire (.claude/)
-- [ ] Validation par l'utilisateur
+- [x] Validation par l'utilisateur
 
-## Phase 1 — Infrastructure 🔲
-- [ ] Créer projet Supabase (région EU)
-- [ ] Configurer table `scores` + RLS
-- [ ] Init Next.js + installer dépendances
-- [ ] Créer repo GitHub `congres`
-- [ ] Push initial
-- [ ] Déployer sur Vercel + variables d'env
+## Phase 1 — Infrastructure ✅
+- [x] Créer projet Supabase (phishquiz-congres, eu-west-3 Paris)
+- [x] Configurer table `scores` + RLS + Realtime
+- [x] Init Next.js + installer dépendances
+- [x] Créer repo GitHub `Comandoat/congres`
+- [x] Push initial
+- [x] Déployer sur Vercel + variables d'env
 
-## Phase 2 — Code de base 🔲
-- [ ] Types TypeScript
-- [ ] Client Supabase (browser + server)
-- [ ] Logique de scoring
-- [ ] Fichier mails.json (4 exemples)
-- [ ] Layout racine (dark theme, fonts)
-- [ ] Page d'accueil
+## Phase 2 — Code de base ✅
+- [x] Types TypeScript
+- [x] Client Supabase (browser)
+- [x] Logique de scoring
+- [x] Fichier mails.json (4 exemples)
+- [x] Layout racine (dark theme, fonts)
+- [x] Page d'accueil
 
-## Phase 3 — Pages principales 🔲
-- [ ] Page Quiz (affichage mails, timer, progression)
-- [ ] Page Résultats (correction, score, récap)
-- [ ] Page Leaderboard (temps réel)
+## Phase 3 — Pages principales ✅
+- [x] Page Quiz (affichage mails, timer, progression)
+- [x] Page Résultats (correction, score, récap)
+- [x] Page Leaderboard (temps réel)
 
-## Phase 4 — Polish & Deploy 🔲
-- [ ] Animations et transitions
-- [ ] Test responsive mobile
-- [ ] Zoom sur images
-- [ ] Push final + déploiement production
-- [ ] README complet
+## Phase 4 — Polish & Deploy ✅
+- [x] README complet
+- [x] Déploiement production sur Vercel
+- [ ] Ajouter les vraies images de mails (à faire par l'utilisateur)
+
+## URLs
+- **Site** : https://phishquiz-congres.vercel.app
+- **GitHub** : https://github.com/Comandoat/congres
+- **Supabase** : https://supabase.com/dashboard/project/bllajteioglgajmvxnfr
+- **Vercel** : https://vercel.com/comando-ats-projects/phishquiz-congres
