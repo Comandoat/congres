@@ -1,5 +1,6 @@
 export interface Mail {
   id: number;
+  title: string;
   image: string;
   isPhishing: boolean;
   hint: string;

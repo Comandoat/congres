@@ -168,7 +168,7 @@ function ResultsContent() {
                         className="text-sm font-semibold text-[var(--color-muted)]"
                         style={{ fontFamily: "var(--font-mono), monospace" }}
                       >
-                        Mail #{mail.id}
+                        Mail #{mail.id} — {mail.title}
                       </span>
 
                       <span

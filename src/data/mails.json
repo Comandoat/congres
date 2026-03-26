@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "title": "Faux domaine hospitalier",
     "image": "/mails/mail-01.png",
     "isPhishing": true,
     "hint": "Regardez attentivement l'adresse e-mail de l'expéditeur et le nom de domaine.",
@@ -8,6 +9,7 @@
   },
   {
     "id": 2,
+    "title": "Faux résultats d'analyses",
     "image": "/mails/mail-02.png",
     "isPhishing": true,
     "hint": "Observez le lien proposé pour télécharger les résultats d'analyses.",
@@ -15,6 +17,7 @@
   },
   {
     "id": 3,
+    "title": "Confirmation de rendez-vous",
     "image": "/mails/mail-03.png",
     "isPhishing": false,
     "hint": "Examinez le domaine de l'expéditeur, le ton du message et les informations demandées.",
@@ -22,6 +25,7 @@
   },
   {
     "id": 4,
+    "title": "Réinitialisation urgente de mot de passe",
     "image": "/mails/mail-04.png",
     "isPhishing": true,
     "hint": "Pourquoi un service informatique vous demanderait-il votre mot de passe par e-mail en urgence ?",
@@ -29,6 +33,7 @@
   },
   {
     "id": 5,
+    "title": "Bon de commande de réactifs piégé",
     "image": "/mails/mail-05.png",
     "isPhishing": true,
     "hint": "Vérifiez la pièce jointe : un vrai bon de commande serait-il envoyé dans ce format ?",
@@ -36,6 +41,7 @@
   },
   {
     "id": 6,
+    "title": "Mise à jour de protocole interne",
     "image": "/mails/mail-06.png",
     "isPhishing": false,
     "hint": "Analysez l'expéditeur, le contenu et le type de demande.",
@@ -43,6 +49,7 @@
   },
   {
     "id": 7,
+    "title": "Fausse ARS — mise en conformité",
     "image": "/mails/mail-07.png",
     "isPhishing": true,
     "hint": "Un organisme officiel vous contacterait-il de cette manière pour une mise en conformité ?",
@@ -50,6 +57,7 @@
   },
   {
     "id": 8,
+    "title": "Invitation à une formation DPC",
     "image": "/mails/mail-08.png",
     "isPhishing": false,
     "hint": "Le contenu est-il cohérent avec une communication professionnelle habituelle ?",
@@ -57,6 +65,7 @@
   },
   {
     "id": 9,
+    "title": "Fausse maintenance informatique",
     "image": "/mails/mail-09.png",
     "isPhishing": true,
     "hint": "Examinez le contexte : recevez-vous habituellement ce type de notification par e-mail ?",
@@ -64,6 +73,7 @@
   },
   {
     "id": 10,
+    "title": "Arnaque au président (BEC)",
     "image": "/mails/mail-10.png",
     "isPhishing": true,
     "hint": "Vérifiez l'expéditeur et la nature de la demande : est-ce une pratique habituelle ?",
