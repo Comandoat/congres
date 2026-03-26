@@ -54,7 +54,7 @@ function QuizContent() {
     if (isLastMail) {
       submittingRef.current = true;
       setIsSubmitting(true);
-      setSaveStatus('Calcul du score...');
+      setSaveStatus('Enregistrement de votre score...');
 
       const allAnswers = answersRef.current;
       const { score, correctAnswers } = calculateTotalScore(allAnswers, typedMails);
@@ -68,13 +68,13 @@ function QuizContent() {
 
       const resultsUrl = `/results?player=${encodeURIComponent(playerName)}&score=${score}&correct=${correctAnswers}&total=${typedMails.length}`;
 
-      setSaveStatus(`Enregistrement du score (${score} pts)...`);
+      setSaveStatus('Enregistrement de votre score...');
 
       // Use await fetch — we show a loading screen so no race condition
       let saved = false;
       for (let attempt = 1; attempt <= 3; attempt++) {
         try {
-          setSaveStatus(`Enregistrement... (tentative ${attempt}/3)`);
+          setSaveStatus('Enregistrement de votre score...');
           const res = await fetch('/api/scores', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -105,7 +105,7 @@ function QuizContent() {
 
       if (!saved) {
         // Last resort: try sendBeacon
-        setSaveStatus('Tentative sendBeacon...');
+        setSaveStatus('Enregistrement de votre score...');
         navigator.sendBeacon(
           '/api/scores',
           new Blob(

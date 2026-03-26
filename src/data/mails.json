@@ -1,30 +1,72 @@
 [
   {
     "id": 1,
-    "image": "/mails/placeholder-8.png",
+    "image": "/mails/mail-01.png",
     "isPhishing": true,
-    "hint": "Regardez attentivement le nom de domaine de l'expéditeur.",
-    "explanation": "L'adresse de l'expéditeur utilise 'h0pital' avec un zéro au lieu de la lettre 'o'. C'est une technique classique de phishing pour imiter un domaine légitime."
+    "hint": "Regardez attentivement l'adresse e-mail de l'expéditeur et le nom de domaine.",
+    "explanation": "L'adresse de l'expéditeur utilise un domaine frauduleux qui imite celui d'un établissement hospitalier (ex : lettres substituées, domaine en '.net' au lieu de '.fr'). Vérifiez toujours le domaine complet de l'expéditeur avant de cliquer sur quoi que ce soit. En milieu hospitalier, les communications officielles proviennent exclusivement de domaines internes vérifiés."
   },
   {
     "id": 2,
-    "image": "/mails/placeholder-8.png",
+    "image": "/mails/mail-02.png",
     "isPhishing": true,
-    "hint": "Vérifiez le lien de téléchargement de la pièce jointe.",
-    "explanation": "Le lien pour télécharger les résultats d'analyses mène vers un site externe suspect. Un vrai laboratoire vous donnerait accès via son portail sécurisé, pas via un lien de téléchargement direct."
+    "hint": "Observez le lien proposé pour télécharger les résultats d'analyses.",
+    "explanation": "Le lien de téléchargement redirige vers un site externe suspect, et non vers le portail sécurisé du laboratoire. Un vrai laboratoire ne vous enverrait jamais de résultats d'analyses via un lien de téléchargement direct dans un e-mail. Les résultats sont consultables uniquement via le Système d'Information du Laboratoire (SIL) ou un portail patient sécurisé."
   },
   {
     "id": 3,
-    "image": "/mails/placeholder-8.png",
+    "image": "/mails/mail-03.png",
     "isPhishing": false,
-    "hint": "Examinez le domaine et le contenu du message.",
-    "explanation": "Cet email provient bien du domaine officiel du CHU. Il contient une confirmation de rendez-vous avec des informations cohérentes et ne demande aucune action urgente ni donnée personnelle."
+    "hint": "Examinez le domaine de l'expéditeur, le ton du message et les informations demandées.",
+    "explanation": "Cet e-mail provient d'un domaine officiel vérifié. Il contient une information cohérente (confirmation de rendez-vous, rappel de réunion), ne demande aucune donnée sensible et ne contient pas de lien de téléchargement suspect. Le ton est professionnel et ne crée aucun sentiment d'urgence artificiel."
   },
   {
     "id": 4,
-    "image": "/mails/placeholder-8.png",
+    "image": "/mails/mail-04.png",
     "isPhishing": true,
-    "hint": "Pourquoi un système de santé vous demanderait-il de réinitialiser votre mot de passe en urgence ?",
-    "explanation": "Ce message crée un sentiment d'urgence artificiel pour vous pousser à cliquer rapidement. Les vrais systèmes de santé ne menacent jamais de supprimer votre compte sous 24h."
+    "hint": "Pourquoi un service informatique vous demanderait-il votre mot de passe par e-mail en urgence ?",
+    "explanation": "Ce message crée un sentiment d'urgence artificiel ('Votre accès sera coupé sous 24h') pour vous pousser à cliquer sans réfléchir. Aucun service informatique légitime ne vous demandera jamais votre mot de passe par e-mail. En cas de doute, contactez directement votre DSI par téléphone."
+  },
+  {
+    "id": 5,
+    "image": "/mails/mail-05.png",
+    "isPhishing": true,
+    "hint": "Vérifiez la pièce jointe : un vrai bon de commande serait-il envoyé dans ce format ?",
+    "explanation": "La pièce jointe au format .exe ou .zip dissimulée derrière un nom de fichier anodin ('Bon_de_commande_reactifs.pdf.exe') est un vecteur d'attaque classique. Les fournisseurs de réactifs envoient leurs documents en PDF simple, jamais en exécutable. Ne téléchargez jamais un fichier dont l'extension ne correspond pas au type annoncé."
+  },
+  {
+    "id": 6,
+    "image": "/mails/mail-06.png",
+    "isPhishing": false,
+    "hint": "Analysez l'expéditeur, le contenu et le type de demande.",
+    "explanation": "Cet e-mail est une communication interne légitime. L'expéditeur est identifiable, le domaine est correct, le message concerne une procédure habituelle (mise à jour de protocole, réunion de service) et ne demande aucune action urgente ni donnée confidentielle. C'est le type de communication que vous recevez régulièrement dans votre activité professionnelle."
+  },
+  {
+    "id": 7,
+    "image": "/mails/mail-07.png",
+    "isPhishing": true,
+    "hint": "Un organisme officiel vous contacterait-il de cette manière pour une mise en conformité ?",
+    "explanation": "Cet e-mail se fait passer pour l'ARS ou un organisme de certification en exploitant l'autorité institutionnelle. Les vrais organismes de régulation ne demandent jamais de 'vérifier vos accès' via un lien dans un e-mail. Les procédures de conformité et d'accréditation passent toujours par des canaux officiels et sécurisés (courrier, plateforme dédiée)."
+  },
+  {
+    "id": 8,
+    "image": "/mails/mail-08.png",
+    "isPhishing": false,
+    "hint": "Le contenu est-il cohérent avec une communication professionnelle habituelle ?",
+    "explanation": "Cet e-mail est légitime : il provient d'un domaine vérifié, son contenu est cohérent avec l'activité quotidienne (information sur une formation, un congrès, ou une mise à jour logicielle planifiée). Il ne demande aucune action immédiate et ne contient pas de lien suspect."
+  },
+  {
+    "id": 9,
+    "image": "/mails/mail-09.png",
+    "isPhishing": true,
+    "hint": "Examinez le contexte : recevez-vous habituellement ce type de notification par e-mail ?",
+    "explanation": "Ce faux e-mail de 'maintenance informatique' vous demande de vous reconnecter à votre session via un lien. C'est une technique d'hameçonnage pour récupérer vos identifiants. Les maintenances informatiques sont annoncées via l'intranet ou des notes de service, et ne nécessitent jamais de ressaisir vos identifiants via un lien e-mail."
+  },
+  {
+    "id": 10,
+    "image": "/mails/mail-10.png",
+    "isPhishing": true,
+    "hint": "Vérifiez l'expéditeur et la nature de la demande : est-ce une pratique habituelle ?",
+    "explanation": "Cet e-mail prétend provenir d'un collègue ou d'un supérieur hiérarchique demandant un virement ou un transfert de données urgent. C'est une arnaque au président (ou BEC — Business Email Compromise), adaptée au milieu hospitalier. Aucune demande financière ou de transfert de données sensibles ne doit être traitée uniquement par e-mail : vérifiez toujours par un appel téléphonique direct."
   }
 ]
