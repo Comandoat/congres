@@ -1,6 +1,14 @@
 [
   {
     "id": 1,
+    "title": "Convocation formation obligatoire — RH",
+    "image": "/mails/mail-10.png",
+    "isPhishing": false,
+    "hint": "Le domaine est-il correct ? La confirmation passe-t-elle par un lien ou par une réponse au mail ?",
+    "explanation": "Cet e-mail est légitime. Le domaine est correct (chu-toulouse.fr), il n'y a aucun lien suspect, et la confirmation de présence est demandée par réponse directe au mail (pas de clic sur un lien externe). La signature est complète et vérifiable avec un numéro de téléphone. C'est une convocation RH classique et sûre."
+  },
+  {
+    "id": 2,
     "title": "L'adresse expéditeur trafiquée",
     "image": "/mails/mail-01.png",
     "isPhishing": true,
@@ -8,7 +16,7 @@
     "explanation": "L'adresse de l'expéditeur contient un zéro (0) à la place de la lettre 'o' → dsi@chu-t0ulouse.fr. C'est une technique classique de typosquatting : l'attaquant imite un domaine légitime en substituant un caractère visuellement proche. Vérifiez toujours lettre par lettre le domaine de l'expéditeur, surtout quand un lien ou une action urgente est demandée."
   },
   {
-    "id": 2,
+    "id": 3,
     "title": "L'urgence et la menace",
     "image": "/mails/mail-02.png",
     "isPhishing": true,
@@ -16,7 +24,7 @@
     "explanation": "Le domaine expéditeur est inventé (ordre-pharmaciens-alert.fr au lieu de ordre.pharmacien.fr) et le ton est extrêmement alarmiste avec menace de radiation sous 48h. L'Ordre des Pharmaciens ne menace jamais par e-mail d'une radiation définitive et ne demande jamais de régularisation via un lien. Le sentiment d'urgence artificiel est le levier psychologique le plus utilisé en phishing."
   },
   {
-    "id": 3,
+    "id": 4,
     "title": "La pièce jointe piégée",
     "image": "/mails/mail-03.png",
     "isPhishing": true,
@@ -24,39 +32,7 @@
     "explanation": "La pièce jointe porte une double extension : Facture_2026-03841.pdf.exe — c'est un exécutable déguisé en PDF. Le domaine expéditeur (biomerieux-factures.com) est également non officiel. Un vrai fournisseur envoie des PDF simples, jamais d'exécutables. Ne téléchargez jamais un fichier dont l'extension ne correspond pas au type annoncé."
   },
   {
-    "id": 4,
-    "title": "Le lien maquillé",
-    "image": "/mails/mail-04.png",
-    "isPhishing": true,
-    "hint": "Survolez le bouton 'Libérer de l'espace' : où mène réellement le lien ?",
-    "explanation": "Le bouton 'Libérer de l'espace' pointe en réalité vers http://msft-storage-clean.xyz/login — une URL sans aucun rapport avec Microsoft, visible uniquement au survol. Le domaine expéditeur (microsoft-services365.com) n'est pas non plus un domaine officiel Microsoft. Avant de cliquer sur un lien, survolez-le toujours pour vérifier l'URL réelle de destination."
-  },
-  {
     "id": 5,
-    "title": "Le spear phishing (mail ciblé)",
-    "image": "/mails/mail-05.png",
-    "isPhishing": true,
-    "hint": "Le nom affiché est celui d'un collègue connu, mais regardez l'adresse e-mail réelle.",
-    "explanation": "Le nom affiché est celui du vrai chef de service (Dr. Jean Dupont), mais l'adresse est une adresse Gmail personnelle (dr.dupont.labobio@gmail.com) — jamais utilisée pour des demandes de données médicales. C'est du spear phishing : un mail ciblé qui exploite la confiance hiérarchique. Une demande de données patients (HbA1c) ne doit jamais transiter par une messagerie personnelle. Vérifiez toujours l'adresse, pas seulement le nom affiché."
-  },
-  {
-    "id": 6,
-    "title": "Les fautes et incohérences",
-    "image": "/mails/mail-06.png",
-    "isPhishing": true,
-    "hint": "Lisez attentivement l'objet et le corps du message : repérez-vous des fautes inhabituelles ?",
-    "explanation": "Le domaine expéditeur est faux (ameli-sante-gouv.fr au lieu de ameli.fr) et le message contient plusieurs fautes d'orthographe : 'attante' au lieu de 'attente', 'coordonées' au lieu de 'coordonnées', 'içi' au lieu de 'ici'. Le logo CPAM est également légèrement pixelisé. Les organismes officiels relisent leurs communications. Des fautes multiples dans un mail officiel sont un signal d'alerte fort."
-  },
-  {
-    "id": 7,
-    "title": "Le QR code piégé",
-    "image": "/mails/mail-07.png",
-    "isPhishing": true,
-    "hint": "Un service informatique légitime vous demanderait-il de scanner un QR code depuis un e-mail avec votre téléphone personnel ?",
-    "explanation": "Un service informatique légitime ne demande jamais de scanner un QR code depuis un mail pour configurer un accès réseau, ni d'utiliser un téléphone personnel à cette fin. Les configurations Wi-Fi passent par des procédures internes encadrées (GPO, MDM). Un QR code dans un e-mail peut rediriger vers un site de vol d'identifiants — c'est du 'quishing' (QR code + phishing)."
-  },
-  {
-    "id": 8,
     "title": "Newsletter professionnelle — SFBC",
     "image": "/mails/mail-08.png",
     "isPhishing": false,
@@ -64,7 +40,15 @@
     "explanation": "Cet e-mail est légitime. Le domaine est cohérent (sfbc.asso.fr), il n'y a aucune demande d'identifiants, pas de sentiment d'urgence, tous les liens pointent vers le bon site et il n'y a pas de pièce jointe suspecte. C'est une newsletter professionnelle classique annonçant un congrès de biologie clinique."
   },
   {
-    "id": 9,
+    "id": 6,
+    "title": "Le lien maquillé",
+    "image": "/mails/mail-04.png",
+    "isPhishing": true,
+    "hint": "Survolez le bouton 'Libérer de l'espace' : où mène réellement le lien ?",
+    "explanation": "Le bouton 'Libérer de l'espace' pointe en réalité vers http://msft-storage-clean.xyz/login — une URL sans aucun rapport avec Microsoft, visible uniquement au survol. Le domaine expéditeur (microsoft-services365.com) n'est pas non plus un domaine officiel Microsoft. Avant de cliquer sur un lien, survolez-le toujours pour vérifier l'URL réelle de destination."
+  },
+  {
+    "id": 7,
     "title": "Notification de contrôle qualité — SIL",
     "image": "/mails/mail-09.png",
     "isPhishing": false,
@@ -72,11 +56,27 @@
     "explanation": "Cet e-mail est légitime. L'adresse interne est cohérente (sil-notifications@chu-toulouse.fr), il ne contient aucun lien cliquable et demande de se connecter manuellement au SIL. C'est un message généré automatiquement par le système de supervision qualité, sans demande d'action sensible. Exactement le type de notification que vous recevez dans votre activité quotidienne au laboratoire."
   },
   {
+    "id": 8,
+    "title": "Le spear phishing (mail ciblé)",
+    "image": "/mails/mail-05.png",
+    "isPhishing": true,
+    "hint": "Le nom affiché est celui d'un collègue connu, mais regardez l'adresse e-mail réelle.",
+    "explanation": "Le nom affiché est celui du vrai chef de service (Dr. Jean Dupont), mais l'adresse est une adresse Gmail personnelle (dr.dupont.labobio@gmail.com) — jamais utilisée pour des demandes de données médicales. C'est du spear phishing : un mail ciblé qui exploite la confiance hiérarchique. Une demande de données patients (HbA1c) ne doit jamais transiter par une messagerie personnelle. Vérifiez toujours l'adresse, pas seulement le nom affiché."
+  },
+  {
+    "id": 9,
+    "title": "Les fautes et incohérences",
+    "image": "/mails/mail-06.png",
+    "isPhishing": true,
+    "hint": "Lisez attentivement l'objet et le corps du message : repérez-vous des fautes inhabituelles ?",
+    "explanation": "Le domaine expéditeur est faux (ameli-sante-gouv.fr au lieu de ameli.fr) et le message contient plusieurs fautes d'orthographe : 'attante' au lieu de 'attente', 'coordonées' au lieu de 'coordonnées', 'içi' au lieu de 'ici'. Le logo CPAM est également légèrement pixelisé. Les organismes officiels relisent leurs communications. Des fautes multiples dans un mail officiel sont un signal d'alerte fort."
+  },
+  {
     "id": 10,
-    "title": "Convocation formation obligatoire — RH",
-    "image": "/mails/mail-10.png",
-    "isPhishing": false,
-    "hint": "Le domaine est-il correct ? La confirmation passe-t-elle par un lien ou par une réponse au mail ?",
-    "explanation": "Cet e-mail est légitime. Le domaine est correct (chu-toulouse.fr), il n'y a aucun lien suspect, et la confirmation de présence est demandée par réponse directe au mail (pas de clic sur un lien externe). La signature est complète et vérifiable avec un numéro de téléphone. C'est une convocation RH classique et sûre."
+    "title": "Le QR code piégé",
+    "image": "/mails/mail-07.png",
+    "isPhishing": true,
+    "hint": "Un service informatique légitime vous demanderait-il de scanner un QR code depuis un e-mail avec votre téléphone personnel ?",
+    "explanation": "Un service informatique légitime ne demande jamais de scanner un QR code depuis un mail pour configurer un accès réseau, ni d'utiliser un téléphone personnel à cette fin. Les configurations Wi-Fi passent par des procédures internes encadrées (GPO, MDM). Un QR code dans un e-mail peut rediriger vers un site de vol d'identifiants — c'est du 'quishing' (QR code + phishing)."
   }
 ]
