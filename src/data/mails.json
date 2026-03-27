@@ -1,82 +1,82 @@
 [
   {
     "id": 1,
-    "title": "Faux domaine hospitalier",
+    "title": "L'adresse expéditeur trafiquée",
     "image": "/mails/mail-01.png",
     "isPhishing": true,
-    "hint": "Regardez attentivement l'adresse e-mail de l'expéditeur et le nom de domaine.",
-    "explanation": "L'adresse de l'expéditeur utilise un domaine frauduleux qui imite celui d'un établissement hospitalier (ex : lettres substituées, domaine en '.net' au lieu de '.fr'). Vérifiez toujours le domaine complet de l'expéditeur avant de cliquer sur quoi que ce soit. En milieu hospitalier, les communications officielles proviennent exclusivement de domaines internes vérifiés."
+    "hint": "Regardez attentivement l'adresse e-mail de l'expéditeur : comparez chaque caractère du domaine.",
+    "explanation": "L'adresse de l'expéditeur contient un zéro (0) à la place de la lettre 'o' → dsi@chu-t0ulouse.fr. C'est une technique classique de typosquatting : l'attaquant imite un domaine légitime en substituant un caractère visuellement proche. Vérifiez toujours lettre par lettre le domaine de l'expéditeur, surtout quand un lien ou une action urgente est demandée."
   },
   {
     "id": 2,
-    "title": "Faux résultats d'analyses",
+    "title": "L'urgence et la menace",
     "image": "/mails/mail-02.png",
     "isPhishing": true,
-    "hint": "Observez le lien proposé pour télécharger les résultats d'analyses.",
-    "explanation": "Le lien de téléchargement redirige vers un site externe suspect, et non vers le portail sécurisé du laboratoire. Un vrai laboratoire ne vous enverrait jamais de résultats d'analyses via un lien de téléchargement direct dans un e-mail. Les résultats sont consultables uniquement via le Système d'Information du Laboratoire (SIL) ou un portail patient sécurisé."
+    "hint": "Observez le domaine de l'expéditeur et le ton du message : menace-t-on de radiation ?",
+    "explanation": "Le domaine expéditeur est inventé (ordre-pharmaciens-alert.fr au lieu de ordre.pharmacien.fr) et le ton est extrêmement alarmiste avec menace de radiation sous 48h. L'Ordre des Pharmaciens ne menace jamais par e-mail d'une radiation définitive et ne demande jamais de régularisation via un lien. Le sentiment d'urgence artificiel est le levier psychologique le plus utilisé en phishing."
   },
   {
     "id": 3,
-    "title": "Confirmation de rendez-vous",
+    "title": "La pièce jointe piégée",
     "image": "/mails/mail-03.png",
-    "isPhishing": false,
-    "hint": "Examinez le domaine de l'expéditeur, le ton du message et les informations demandées.",
-    "explanation": "Cet e-mail provient d'un domaine officiel vérifié. Il contient une information cohérente (confirmation de rendez-vous, rappel de réunion), ne demande aucune donnée sensible et ne contient pas de lien de téléchargement suspect. Le ton est professionnel et ne crée aucun sentiment d'urgence artificiel."
+    "isPhishing": true,
+    "hint": "Vérifiez le nom complet de la pièce jointe : quelle est la vraie extension du fichier ?",
+    "explanation": "La pièce jointe porte une double extension : Facture_2026-03841.pdf.exe — c'est un exécutable déguisé en PDF. Le domaine expéditeur (biomerieux-factures.com) est également non officiel. Un vrai fournisseur envoie des PDF simples, jamais d'exécutables. Ne téléchargez jamais un fichier dont l'extension ne correspond pas au type annoncé."
   },
   {
     "id": 4,
-    "title": "Réinitialisation urgente de mot de passe",
+    "title": "Le lien maquillé",
     "image": "/mails/mail-04.png",
     "isPhishing": true,
-    "hint": "Pourquoi un service informatique vous demanderait-il votre mot de passe par e-mail en urgence ?",
-    "explanation": "Ce message crée un sentiment d'urgence artificiel ('Votre accès sera coupé sous 24h') pour vous pousser à cliquer sans réfléchir. Aucun service informatique légitime ne vous demandera jamais votre mot de passe par e-mail. En cas de doute, contactez directement votre DSI par téléphone."
+    "hint": "Survolez le bouton 'Libérer de l'espace' : où mène réellement le lien ?",
+    "explanation": "Le bouton 'Libérer de l'espace' pointe en réalité vers http://msft-storage-clean.xyz/login — une URL sans aucun rapport avec Microsoft, visible uniquement au survol. Le domaine expéditeur (microsoft-services365.com) n'est pas non plus un domaine officiel Microsoft. Avant de cliquer sur un lien, survolez-le toujours pour vérifier l'URL réelle de destination."
   },
   {
     "id": 5,
-    "title": "Bon de commande de réactifs piégé",
+    "title": "Le spear phishing (mail ciblé)",
     "image": "/mails/mail-05.png",
     "isPhishing": true,
-    "hint": "Vérifiez la pièce jointe : un vrai bon de commande serait-il envoyé dans ce format ?",
-    "explanation": "La pièce jointe au format .exe ou .zip dissimulée derrière un nom de fichier anodin ('Bon_de_commande_reactifs.pdf.exe') est un vecteur d'attaque classique. Les fournisseurs de réactifs envoient leurs documents en PDF simple, jamais en exécutable. Ne téléchargez jamais un fichier dont l'extension ne correspond pas au type annoncé."
+    "hint": "Le nom affiché est celui d'un collègue connu, mais regardez l'adresse e-mail réelle.",
+    "explanation": "Le nom affiché est celui du vrai chef de service (Dr. Jean Dupont), mais l'adresse est une adresse Gmail personnelle (dr.dupont.labobio@gmail.com) — jamais utilisée pour des demandes de données médicales. C'est du spear phishing : un mail ciblé qui exploite la confiance hiérarchique. Une demande de données patients (HbA1c) ne doit jamais transiter par une messagerie personnelle. Vérifiez toujours l'adresse, pas seulement le nom affiché."
   },
   {
     "id": 6,
-    "title": "Mise à jour de protocole interne",
+    "title": "Les fautes et incohérences",
     "image": "/mails/mail-06.png",
-    "isPhishing": false,
-    "hint": "Analysez l'expéditeur, le contenu et le type de demande.",
-    "explanation": "Cet e-mail est une communication interne légitime. L'expéditeur est identifiable, le domaine est correct, le message concerne une procédure habituelle (mise à jour de protocole, réunion de service) et ne demande aucune action urgente ni donnée confidentielle. C'est le type de communication que vous recevez régulièrement dans votre activité professionnelle."
+    "isPhishing": true,
+    "hint": "Lisez attentivement l'objet et le corps du message : repérez-vous des fautes inhabituelles ?",
+    "explanation": "Le domaine expéditeur est faux (ameli-sante-gouv.fr au lieu de ameli.fr) et le message contient plusieurs fautes d'orthographe : 'attante' au lieu de 'attente', 'coordonées' au lieu de 'coordonnées', 'içi' au lieu de 'ici'. Le logo CPAM est également légèrement pixelisé. Les organismes officiels relisent leurs communications. Des fautes multiples dans un mail officiel sont un signal d'alerte fort."
   },
   {
     "id": 7,
-    "title": "Fausse ARS — mise en conformité",
+    "title": "Le QR code piégé",
     "image": "/mails/mail-07.png",
     "isPhishing": true,
-    "hint": "Un organisme officiel vous contacterait-il de cette manière pour une mise en conformité ?",
-    "explanation": "Cet e-mail se fait passer pour l'ARS ou un organisme de certification en exploitant l'autorité institutionnelle. Les vrais organismes de régulation ne demandent jamais de 'vérifier vos accès' via un lien dans un e-mail. Les procédures de conformité et d'accréditation passent toujours par des canaux officiels et sécurisés (courrier, plateforme dédiée)."
+    "hint": "Un service informatique légitime vous demanderait-il de scanner un QR code depuis un e-mail avec votre téléphone personnel ?",
+    "explanation": "Un service informatique légitime ne demande jamais de scanner un QR code depuis un mail pour configurer un accès réseau, ni d'utiliser un téléphone personnel à cette fin. Les configurations Wi-Fi passent par des procédures internes encadrées (GPO, MDM). Un QR code dans un e-mail peut rediriger vers un site de vol d'identifiants — c'est du 'quishing' (QR code + phishing)."
   },
   {
     "id": 8,
-    "title": "Invitation à une formation DPC",
+    "title": "Newsletter professionnelle — SFBC",
     "image": "/mails/mail-08.png",
     "isPhishing": false,
-    "hint": "Le contenu est-il cohérent avec une communication professionnelle habituelle ?",
-    "explanation": "Cet e-mail est légitime : il provient d'un domaine vérifié, son contenu est cohérent avec l'activité quotidienne (information sur une formation, un congrès, ou une mise à jour logicielle planifiée). Il ne demande aucune action immédiate et ne contient pas de lien suspect."
+    "hint": "Vérifiez le domaine, le contenu et le type de demande : y a-t-il quelque chose de suspect ?",
+    "explanation": "Cet e-mail est légitime. Le domaine est cohérent (sfbc.asso.fr), il n'y a aucune demande d'identifiants, pas de sentiment d'urgence, tous les liens pointent vers le bon site et il n'y a pas de pièce jointe suspecte. C'est une newsletter professionnelle classique annonçant un congrès de biologie clinique."
   },
   {
     "id": 9,
-    "title": "Fausse maintenance informatique",
+    "title": "Notification de contrôle qualité — SIL",
     "image": "/mails/mail-09.png",
-    "isPhishing": true,
-    "hint": "Examinez le contexte : recevez-vous habituellement ce type de notification par e-mail ?",
-    "explanation": "Ce faux e-mail de 'maintenance informatique' vous demande de vous reconnecter à votre session via un lien. C'est une technique d'hameçonnage pour récupérer vos identifiants. Les maintenances informatiques sont annoncées via l'intranet ou des notes de service, et ne nécessitent jamais de ressaisir vos identifiants via un lien e-mail."
+    "isPhishing": false,
+    "hint": "Observez : y a-t-il un lien cliquable ? Le message demande-t-il une action sensible ?",
+    "explanation": "Cet e-mail est légitime. L'adresse interne est cohérente (sil-notifications@chu-toulouse.fr), il ne contient aucun lien cliquable et demande de se connecter manuellement au SIL. C'est un message généré automatiquement par le système de supervision qualité, sans demande d'action sensible. Exactement le type de notification que vous recevez dans votre activité quotidienne au laboratoire."
   },
   {
     "id": 10,
-    "title": "Arnaque au président (BEC)",
+    "title": "Convocation formation obligatoire — RH",
     "image": "/mails/mail-10.png",
-    "isPhishing": true,
-    "hint": "Vérifiez l'expéditeur et la nature de la demande : est-ce une pratique habituelle ?",
-    "explanation": "Cet e-mail prétend provenir d'un collègue ou d'un supérieur hiérarchique demandant un virement ou un transfert de données urgent. C'est une arnaque au président (ou BEC — Business Email Compromise), adaptée au milieu hospitalier. Aucune demande financière ou de transfert de données sensibles ne doit être traitée uniquement par e-mail : vérifiez toujours par un appel téléphonique direct."
+    "isPhishing": false,
+    "hint": "Le domaine est-il correct ? La confirmation passe-t-elle par un lien ou par une réponse au mail ?",
+    "explanation": "Cet e-mail est légitime. Le domaine est correct (chu-toulouse.fr), il n'y a aucun lien suspect, et la confirmation de présence est demandée par réponse directe au mail (pas de clic sur un lien externe). La signature est complète et vérifiable avec un numéro de téléphone. C'est une convocation RH classique et sûre."
   }
 ]
